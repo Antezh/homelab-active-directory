@@ -1,0 +1,7 @@
+# Sensitive files — never commit
+Password.txt
+*.txt
+
+# OS junk
+Thumbs.db
+.DS_Store
