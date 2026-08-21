@@ -4,6 +4,8 @@ A self-built Windows Server 2025 Active Directory environment, deployed and docu
 
 > 🚧 **Status:** In progress — new phases are added as the lab grows. See [`docs/`](./docs) for detailed write-ups of each stage.
 
+> 📓 Raw working notes (dated, unedited, in Swedish) are kept in [`raw-notes/`](./raw-notes) for transparency — polished write-ups of each phase are in [`docs/`](./docs).
+
 ---
 
 ## 🎯 Purpose & Goal
@@ -88,16 +90,22 @@ A healthy single-domain AD forest with `DC01.homelab.local` holding all FSMO rol
 
 ```
 homelab-active-directory/
-├── README.md              ← you are here
+├── README.md               ← you are here
 ├── docs/
 │   ├── 01-planning.md
 │   ├── 02-domain-controller-setup.md
 │   └── 03-ou-design.md
+├── raw-notes/
+│   └── AD_DS_Documentation.docx   ← dated, unedited working log (Swedish)
 ├── screenshots/
-│   └── ...                ← numbered, referenced from docs/
+│   └── ...                 ← numbered, referenced from docs/
 └── scripts/
-    └── ...                ← PowerShell used during setup (e.g. Get-ADDomain checks)
+    └── ...                 ← PowerShell used during setup (e.g. Get-ADDomain checks)
 ```
+
+---
+
+*Documentation in this repo was structured and edited with the help of AI (Claude) as a learning aid — all lab work, configuration, and troubleshooting was performed hands-on in the VM environment.*
 
 ---
 
