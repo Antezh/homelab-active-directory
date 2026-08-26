@@ -2,15 +2,15 @@
 
 A self-built Windows Server 2025 Active Directory environment, deployed and documented as a portfolio project while transitioning into IT support / systems administration.
 
-> 🚧 **Status:** In progress — new phases are added as the lab grows. See [`docs/`](./docs) for detailed write-ups of each stage.
+> 🚧 **Status:** In progress - new phases are added as the lab grows. See [`docs/`](./docs) for detailed write-ups of each stage.
 
-> 📓 Raw working notes (dated, unedited, in Swedish) are kept in [`raw-notes/`](./raw-notes) for transparency — polished write-ups of each phase are in [`docs/`](./docs).
+> Raw working notes (dated, unedited, in Swedish) are kept in [`raw-notes/`](./raw-notes) for transparency.
 
 ---
 
-## 🎯 Purpose & Goal
+## Purpose & Goal
 
-I'm a former train driver moving into IT, with a BSc in Computer and Systems Sciences and the Google IT Support Professional Certificate. This lab exists to build hands-on, demonstrable experience with the technologies a junior sysadmin / IT support role actually touches day to day — Active Directory, DNS, Group Policy, and general Windows Server administration — and to document that process transparently, including what went wrong along the way.
+I'm a former train driver moving into IT, with a BSc in Computer and Systems Sciences. This lab exists to build hands on experience with the technologies a junior sysadmin or IT support role may touch on a day to day basis, and to document that process transparently, including what went wrong along the way.
 
 **Goals for this environment:**
 - Stand up a functioning single-domain AD forest from scratch
@@ -21,7 +21,7 @@ I'm a former train driver moving into IT, with a BSc in Computer and Systems Sci
 
 ---
 
-## 🖥️ Environment / Tech Stack
+## Environment / Tech Stack
 
 | Component | Details |
 |---|---|
@@ -31,13 +31,13 @@ I'm a former train driver moving into IT, with a BSc in Computer and Systems Sci
 | Network | Isolated `VMnet2`, `192.168.50.0/24` |
 | Domain | `homelab.local` |
 
-*(Additional VMs — member servers, client machines — are added as the lab expands; see docs for current state.)*
+*(Additional VMs such as potential member servers, client machines, etc. are added as the lab expands. See docs for current state.)*
 
 ---
 
-## 🏗️ The Build (phase index)
+## The Build (phase index)
 
-Each phase below is documented in full in [`docs/`](./docs), following: **Purpose → Build → Config → Challenges/Troubleshooting → Lessons Learned → Result**.
+Each phase below is documented separately in [`docs/`](./docs), following: **Purpose → Build → Config → Challenges/Troubleshooting → Lessons Learned → Result**.
 
 | # | Phase | Summary |
 |---|---|---|
@@ -45,48 +45,47 @@ Each phase below is documented in full in [`docs/`](./docs), following: **Purpos
 | 02 | [Domain Controller Setup](./docs/02-domain-controller-setup.md) | VMnet2 config, Windows Server 2025 install, DC01 promotion, DSRM recovery after a rename issue |
 | 03 | [OU & Group Design](./docs/03-ou-design.md) | Flat department-based OU model (Sales, IT, HR, Finance) |
 
-*(Rows are added as new phases are completed — GPO, DNS hardening, backups, etc.)*
+*(Rows are added as new phases are completed)*
 
 ---
 
-## 🔧 Configuration Highlights
+## Configuration Highlights
 
 - Domain: `homelab.local`
 - Domain Controller: `DC01` (all FSMO roles)
 - Network: isolated `VMnet2` — `192.168.50.0/24`
 - OU structure: flat, department-based (Sales / IT / HR / Finance)
 
-Full configuration detail lives in each phase's doc, not here — this section is a quick reference, not the full log.
+As already pointed out: Full configuration detail lives in each phase's doc, not here. This section is simply a quick reference, not the full log.
 
 ---
 
-## 🧩 Challenges & Troubleshooting (project-wide highlights)
+## Challenges & Troubleshooting (project-wide highlights)
 
-The most valuable parts of this lab weren't the steps that worked first try — they were the ones that didn't. A few notable ones (full detail in the relevant phase doc):
+The most valuable parts of this lab weren't the steps that worked first try, they were the ones that didn't. A few notable ones (full detail in the relevant phase doc):
 
-- **DC promotion trust error** — promoted the server *before* renaming it to `DC01`, which broke the trust relationship. Fixed by using DSRM (Directory Services Restore Mode) to cleanly demote and re-promote *after* renaming the host first. Lesson: rename before promotion, always.
+- **DC promotion trust error** - promoted the server *before* renaming it to `DC01`, which broke the trust relationship. Fixed by using DSRM (Directory Services Restore Mode) to cleanly demote and re-promote *after* renaming the host first. Lesson learned: rename before promotion, always.
 
-*(More entries added as new issues come up — that's the point of the log.)*
-
----
-
-## 📚 Lessons Learned / Takeaways
-
-- Hostname and domain identity should be finalized **before** promoting a server to DC — not after.
-- DSRM is a legitimate and useful recovery path, not just a "break glass" panic button.
-- A flat OU structure is easier to reason about at small scale, but the design should anticipate growth (nested OUs, delegated admin) rather than needing a rebuild later.
-
-*(This section grows across the whole project — think of it as the running "what I'd tell past-me" list.)*
+*(More entries added as new issues arise, as they most likely will arise)*
 
 ---
 
-## ✅ Result (current state)
+## Lessons Learned / Takeaways
+
+- Hostname and domain identity should be finalized **before** promoting a server to DC.
+- DSRM is a proven recovery path when normal domain login is broken.
+
+*(This section grows across the whole project. Think of it as the accumulated list of "what I wish I'd known before".)*
+
+---
+
+## Result (current state)
 
 A healthy single-domain AD forest with `DC01.homelab.local` holding all FSMO roles, verified via `Get-ADDomain`, running on an isolated lab network with an initial OU structure in place. Next phase: Group Policy baseline.
 
 ---
 
-## 🗂️ Repo Structure
+## Repo Structure
 
 ```
 homelab-active-directory/
@@ -105,10 +104,10 @@ homelab-active-directory/
 
 ---
 
-*Documentation in this repo was structured and edited with the help of AI (Claude) as a learning aid — all lab work, configuration, and troubleshooting was performed hands-on in the VM environment.*
+*Documentation in this repo was structured and edited with the help of AI (Claude) as a learning aid and time saver. All lab work, configuration and troubleshooting was performed hands-on in the VM environment.*
 
 ---
 
-## 🛠️ Skills Demonstrated
+## Skills Demonstrated
 
 `Active Directory Domain Services` `DNS` `Group Policy (GPO)` `Windows Server 2025` `VMware Workstation Pro` `Network Segmentation` `Disaster Recovery (DSRM)` `Technical Documentation` `Git / GitHub`
