@@ -97,7 +97,7 @@ After promotion succeeded, the machine was renamed for easier documentation goin
 
 A clean Windows Server 2025 installation, correctly hostnamed `DC01`, successfully promoted to the first Domain Controller of a new forest and domain: `DC01.homelab.local`. Verified healthy via `Get-ADDomain`:
 
-![Get-ADDomain output after clean AD DS setup](../screenshots/01-Get-ADDomain-after-Clean-ADDS-setup_.png)
+![Get-ADDomain output after clean AD DS setup](../screenshots/01-Get-ADDomain-after-Clean-ADDS-Setup.png)
 
 A VM snapshot was saved at this state named `DC01 – Clean AD DS Install – working` as a rollback point before further configuration.
 

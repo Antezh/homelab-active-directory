@@ -43,7 +43,7 @@ Each phase below is documented separately in [`docs/`](./docs), following: **Pur
 |---|---|---|
 | 01 | [Network & Host Planning](./docs/01-planning.md) | Hardware assessment, isolated lab network design |
 | 02 | [Domain Controller Setup](./docs/02-domain-controller-setup.md) | VMnet2 config, Windows Server 2025 install, DC01 promotion, DSRM recovery after a rename issue |
-| 03 | [OU & Group Design](./docs/03-ou-design.md) | Flat department-based OU model (Sales, IT, HR, Finance) |
+| 03 | [OU Design and License Activation Fix](./docs/03-ou-design.md) | Four department OUs. Hourly shutdowns traced to a failed evaluation activation on the isolated network, fixed with a temporary NAT adapter. Stale DNS record removed |
 
 *(Rows are added as new phases are completed)*
 
@@ -81,7 +81,7 @@ The most valuable parts of this lab weren't the steps that worked first try, the
 
 ## Result (current state)
 
-A healthy single-domain AD forest with `DC01.homelab.local` holding all FSMO roles, verified via `Get-ADDomain`, running on an isolated lab network with an initial OU structure in place. Next phase: Group Policy baseline.
+A healthy single domain AD forest with `DC01.homelab.local` holding all FSMO roles, verified via `Get-ADDomain`, running on an isolated lab network. The domain has four department OUs (Sales, HR, IT, Finance). Each OU holds one test user and a matching security group (`SG-Sales`, `SG-HR`, `SG-IT`, `SG-Finance`). Next step: a PowerShell script that creates users, then a client VM and Group Policy.
 
 ---
 
