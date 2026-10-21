@@ -65,7 +65,9 @@ As already pointed out: Full configuration detail lives in each phase's doc, not
 
 The most valuable parts of this lab weren't the steps that worked first try, they were the ones that didn't. A few notable ones (full detail in the relevant phase doc):
 
-- **DC promotion trust error** - promoted the server *before* renaming it to `DC01`, which broke the trust relationship. Fixed by using DSRM (Directory Services Restore Mode) to cleanly demote and re-promote *after* renaming the host first. Lesson learned: rename before promotion, always.
+- **DC promotion trust error:**  promoted the server *before* renaming it to `DC01`, which broke the trust relationship. Fixed by using DSRM (Directory Services Restore Mode) to cleanly demote and re-promote *after* renaming the host first. Lesson learned: rename before promotion, always.
+- **Server shutting itself down:** the VM turned itself off twice. Troubleshooting with Event Viewer showed Event ID 1074, and `slmgr /dlv` showed the evaluation license had never been activated, because the isolated lab network had no internet. Fixed by adding a temporary NAT network, activating with `slmgr /ato`, and then switching back to host only. A stale DNS record left over from the network change was removed afterwards. Full detail in [Phase 03](./docs/03-ou-design.md).
+- **PowerShell errors when creating users:** `New-ADUser` failed on a misspelled parameter and then on the `-Path` format. Active Directory paths are distinguished names, so `DC=homelab.local` had to be written as `DC=homelab,DC=local`. Full detail in [Phase 04](./docs/04-users-and-groups.md).
 
 *(More entries added as new issues arise, as they most likely will arise)*
 
@@ -75,6 +77,11 @@ The most valuable parts of this lab weren't the steps that worked first try, the
 
 - Hostname and domain identity should be finalized **before** promoting a server to DC.
 - DSRM is a proven recovery path when normal domain login is broken.
+- An isolated lab network blocks Windows activation, make sure to activate right after installing the server .
+- Check Event Viewer first after unexplained shutdowns: Event ID 1074 named the cause for the shutdowns.
+- After changing networks on a domain controller, make sure to check `Resolve-DnsName` and remove stale DNS records.
+- Active Directory paths are distinguished names, with one `DC=` for each part of the domain name.
+- `-WhatIf` lets me test a command safely, but it does not prove the real run will succeed.
 
 *(This section grows across the whole project. Think of it as the accumulated list of "what I wish I'd known before".)*
 
