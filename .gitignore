@@ -1,6 +1,7 @@
 # Sensitive files — never commit
 Password.txt
 *.txt
+.~lock.*
 
 # OS junk
 Thumbs.db

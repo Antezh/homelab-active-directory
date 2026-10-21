@@ -44,6 +44,7 @@ Each phase below is documented separately in [`docs/`](./docs), following: **Pur
 | 01 | [Network & Host Planning](./docs/01-planning.md) | Hardware assessment, isolated lab network design |
 | 02 | [Domain Controller Setup](./docs/02-domain-controller-setup.md) | VMnet2 config, Windows Server 2025 install, DC01 promotion, DSRM recovery after a rename issue |
 | 03 | [OU Design and License Activation Fix](./docs/03-ou-design.md) | Four department OUs. Hourly shutdowns traced to a failed evaluation activation on the isolated network, fixed with a temporary NAT adapter. Stale DNS record removed |
+| 04 | [Users, Groups and PowerShell Scripting](./docs/04-users-and-groups.md) | One test user and one security group per department, created through the GUI and PowerShell. First scripts with `-WhatIf` and an existence check. In progress |
 
 *(Rows are added as new phases are completed)*
 
@@ -93,7 +94,8 @@ homelab-active-directory/
 ├── docs/
 │   ├── 01-planning.md
 │   ├── 02-domain-controller-setup.md
-│   └── 03-ou-design.md
+│   ├── 03-ou-design.
+│   └── 04-users-and-groups.md
 ├── raw-notes/
 │   └── AD_DS_Documentation.docx   ← dated, unedited working log (Swedish)
 ├── screenshots/

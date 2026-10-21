@@ -1,7 +1,7 @@
 # Phase 03 — OU Design and License Activation Fix
 
 **Date:** 2026-08-31
-**Raw working notes:** [`raw-notes/AD DS Documentation.docx`](../raw-notes/AD%20DS%20Documentation.docx)
+**Raw working notes:** [`raw-notes/AD_DS_Documentation.docx`](../raw-notes/AD_DS_Documentation.docx)
 
 ---
 
