@@ -154,7 +154,7 @@ Write-Host "SG-$o already exists, skipping creation"
 }}
 ```
 
-I wrote this after all four groups were already created as a means to learn scripting, so the `-WhatIf` stays in the script. It only checks that the code runs without errors and nothing is created. In other words, the "create" branch has only been simulated.
+I wrote this after all four groups were already created as a means to learn scripting, so the `-WhatIf` stays in the script. It only checks that the code runs without errors and nothing is created. In other words, the "create" branch has only been simulated. The script is saved in [`scripts/New-DepartmentGroups.ps1`](../scripts/New-DepartmentGroups.ps1).
 
 ![Group existence check loop](../screenshots/06-Check-if-exists-ADGroup-Loop.png)
 
